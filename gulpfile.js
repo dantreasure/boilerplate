@@ -1,5 +1,3 @@
-//TODO: Figure out how to selectively push dist to heroku
-
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -23,10 +21,6 @@ gulp.task('html', function(){
     gulp.src('src/index.html').pipe(gulp.dest('dist/'))
     gulp.src(['src/partials/*.html']).pipe(livereload());
 });
-
-gulp.task('fonts', function() {
-    gulp.src('src/fonts/**/*').pipe(gulp.dest('dist/fonts'))
-})
 
 gulp.task('styles', function() {
   return gulp.src('src/styles/**/*.sass')
@@ -67,11 +61,11 @@ gulp.task('images', function() {
 });
 
 gulp.task('clean', function(cb) {
-    del(['dist/css', 'dist/js', 'dist/img', 'dist/fonts'], cb)
+    del(['dist/css', 'dist/js', 'dist/img'], cb)
 });
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('html', 'styles', 'scripts', 'images', 'fonts');
+    gulp.start('html', 'styles', 'scripts', 'images');
 });
 
 gulp.task('watch', function() {
